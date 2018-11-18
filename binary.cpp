@@ -32,8 +32,9 @@ string ReverseString(string str) {
 
 string binary(int num) {
 	int coefficient = -1, numerator  = num;
-	string binary;
-	string result;
+	string binary="";
+	string result="";
+
 	if(num <=7) {
 		result= "";
 		if(num <=3) {
@@ -43,13 +44,6 @@ string binary(int num) {
 			}
 		}
 	}
-
-// if(num<=7){
-//  if(num<=1)binary="00";
-//  else if(num<=3)binary="0";
-//  else binary="";
-//
-// }
 	while(coefficient != 0) {
 		binary += to_string(numerator % 2);
 		coefficient = numerator / 2;
@@ -62,19 +56,19 @@ string binary(int num) {
 
 
 
-string printWords(string str) {
-	string word;
-	stringstream iss(str);
-
-	while (iss >> word)
-		cout<<word<<endl;
-	cout<<endl;
-	return word;
-}
+//string printWords(string str) {
+//	string word;
+//	stringstream iss(str);
+//
+//	while (iss >> word)
+//		cout<<word<<endl;
+//	cout<<endl;
+//	return word;
+//}
 
 
 // convert string n to dicimal
-unsigned long long convertBinaryToDecimal(string  n) {
+int convertBinaryToDecimal(string  n) {
 	string reverse = ReverseString(n);
 	char cstr[n.size()];
 	strcpy(cstr, reverse.c_str());
@@ -108,52 +102,45 @@ int main() {
 /// test input
 	cout << "input your instruction :";
 	cin >> inst;
-
-	cout << "input your rd :";
-	cin  >>number1;
-	while(number1 >= 8) {
-		cout << "rd must least than 8";
-		cout << endl;
-		cout << "input your rd :";
-		cin >> number1;
-	}
-
-	cout << "input your rs :";
-	cin  >>number2;
-	while(number2 >= 8) {
-		cout << "rs must least than 8";
-		cout << endl;
-		cout << "input your rs :";
-		cin >> number2;
-	}
-
-	cout << "input your rt :";
-	cin  >>number3;
-	while(number3 >= 8) {
-		cout << "rt must least than 8";
-		cout << endl;
-		cout << "input your rt :";
-		cin >> number3;
-	}
-
-	cout << "input your im :";
-	cin  >>number4;
-	while(number4 >= 32768 || number4 <= -32769) {
-		cout << "wrong im";
-		cout << endl;
-		cout << "input your im :";
-		cin >> number4;
-	}
-
-
-
 	if(inst =="add" || inst =="nand") {
+
+		cout << "input your rd :";
+		cin  >>number1;
+		while(number1 >= 8) {
+			cout << "rd must least than 8";
+			cout << endl;
+			cout << "input your rd :";
+			cin >> number1;
+		}
+
+		cout << "input your rs :";
+		cin  >>number2;
+		while(number2 >= 8) {
+			cout << "rs must least than 8";
+			cout << endl;
+			cout << "input your rs :";
+			cin >> number2;
+		}
+
+		cout << "input your rt :";
+		cin  >>number3;
+		while(number3 >= 8) {
+			cout << "rt must least than 8";
+			cout << endl;
+			cout << "input your rt :";
+			cin >> number3;
+		}
+
+
 		for(int j =0; j<7 ; j++) {   //fill 0 25-31
 			ans.push_back("0");
 		}
+		if(inst =="add") {
 
-		for(int j =0; j<3 ; j++) {  // opcode=000
-			ans.push_back("0");
+			ans.push_back("000"); //opcode =000
+		}
+		if(inst =="nand") {
+			ans.push_back("001"); // opcode =001
 		}
 		ans.push_back(binary(number3));
 		ans.push_back(binary(number2));
@@ -163,7 +150,35 @@ int main() {
 		}
 		ans.push_back(binary(number1));
 
-	} else if(inst =="jalr" ) { // j-type
+	}
+	if(inst =="jalr" ) { // j-type
+
+		cout << "input your rd :";
+		cin  >>number1;
+		while(number1 >= 8) {
+			cout << "rd must least than 8";
+			cout << endl;
+			cout << "input your rd :";
+			cin >> number1;
+		}
+
+		cout << "input your rs :";
+		cin  >>number2;
+		while(number2 >= 8) {
+			cout << "rs must least than 8";
+			cout << endl;
+			cout << "input your rs :";
+			cin >> number2;
+		}
+
+		cout << "input your rt :";
+		cin  >>number3;
+		while(number3 >= 8) {
+			cout << "rt must least than 8";
+			cout << endl;
+			cout << "input your rt :";
+			cin >> number3;
+		}
 
 		for(int j =0; j<7 ; j++) {   //fill 0 25-31
 			ans.push_back("0");
@@ -175,7 +190,8 @@ int main() {
 			ans.push_back("0");
 		}
 
-	} else if(inst == "halt" || inst =="noop") {
+	}
+	if(inst == "halt" || inst =="noop") {
 		for(int j =0; j<7 ; j++) {   //fill 0 25-31
 			ans.push_back("0");
 		}
@@ -189,7 +205,38 @@ int main() {
 			ans.push_back("0");
 		}
 
-	} else if(inst == "lw" || inst =="sw" || inst == "beq") {
+	}
+	if(inst == "lw" || inst =="sw" || inst == "beq") {
+
+
+		cout << "input your rs :";
+		cin  >>number2;
+		while(number2 >= 8) {
+			cout << "rs must least than 8";
+			cout << endl;
+			cout << "input your rs :";
+			cin >> number2;
+		}
+
+		cout << "input your rt :";
+		cin  >>number3;
+		while(number3 >= 8) {
+			cout << "rt must least than 8";
+			cout << endl;
+			cout << "input your rt :";
+			cin >> number3;
+		}
+
+		cout << "input your im :";
+		cin  >>number4;
+		while(number4 >= 32768 || number4 <= -32769) {
+			cout << "wrong im";
+			cout << endl;
+			cout << "input your im :";
+			cin >> number4;
+		}
+
+
 		for(int j =0; j<7 ; j++) {   //fill 0 25-31
 			ans.push_back("0");
 		}
@@ -204,7 +251,6 @@ int main() {
 		}
 		ans.push_back(binary(number2));
 		ans.push_back(binary(number3));
-
 		if(number4 < 0) {
 			int con = number4 * (-1);
 			con = con - 1;
@@ -240,31 +286,29 @@ int main() {
 	}
 
 
-	string ansz;
-	unsigned long long int_ans=0;
+	string ansz="";
+	int int_ans;
 	for(int i =0; i<ans.size() ; i++) { // print out the result!!
 		ansz+= ans.at(i);
 	}
 
+	ans.clear();
+	cout <<endl;
 	int_ans= convertBinaryToDecimal(ansz);
 	cout << ansz.length();
 	cout <<endl;
+
 	cout <<ansz;
 	cout <<endl;
-	cout << int_ans;
-	cout <<endl;
-	cout << binary(number1);
-	cout <<endl;
-	cout << binary(number2);
-	cout <<endl;
-	cout << binary(number3);
-	cout <<endl;
 
-// ifstream file("C:/Users/Aorjornor/Desktop/comarch/test1.txt");
-// string str;
-// while (std::getline(file, str)) {
-//  printWords(str);
-// }
+	cout << int_ans;
+	cout << endl;
+
+//	ifstream file("C:/Users/LuckyCat/Desktop/jom/comarch_prot/test1.txt");
+//	string str;
+//	while (std::getline(file, str)) {
+//		printWords(str);
+//	}
 
 
 	return 0;

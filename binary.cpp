@@ -56,15 +56,15 @@ string binary(int num) {
 
 
 
-//string printWords(string str) {
-//	string word;
-//	stringstream iss(str);
-//
-//	while (iss >> word)
-//		cout<<word<<endl;
-//	cout<<endl;
-//	return word;
-//}
+string printWords(string str) {
+	string word;
+	stringstream iss(str);
+
+	while (iss >> word)
+		cout<<word<<endl;
+	cout<<endl;
+	return word;
+}
 
 
 // convert string n to dicimal
@@ -304,11 +304,11 @@ int main() {
 	cout << int_ans;
 	cout << endl;
 
-//	ifstream file("C:/Users/LuckyCat/Desktop/jom/comarch_prot/test1.txt");
-//	string str;
-//	while (std::getline(file, str)) {
-//		printWords(str);
-//	}
+	ifstream file("C:/Users/LuckyCat/Desktop/jom/comarch_prot/test1.txt");
+	string str;
+	while (std::getline(file, str)) {
+		printWords(str);
+	}
 
 
 	return 0;

@@ -11,6 +11,12 @@
 using namespace std;
 
 
+string inst[100];
+string num[5][100];
+
+int n = 0;
+
+
 template <class N> N ToNumber(string string_number) {
 	N number;
 	istringstream iss(string_number);
@@ -56,15 +62,27 @@ string binary(int num) {
 
 
 
-string printWords(string str) {
+void printWords(string str) {
 	string word;
 	stringstream iss(str);
-
-	while (iss >> word)
-		cout<<word<<endl;
-	cout<<endl;
-	return word;
+	int nLine = 0;
+	while (iss >> word) {
+		if((word == "start" || word == "done" || word == "fine" || word == "neg" || word == "stAddr" )&& nLine == 0) {
+			num[3][n] = word;
+			nLine--;
+		}
+		if(nLine == 0) {
+			inst[n] = word;
+		}
+		if(nLine > 0) {
+			num[nLine-1][n] = word;
+		}
+		nLine++;
+	}
+	n++;
 }
+
+
 
 
 // convert string n to dicimal
@@ -86,6 +104,8 @@ int convertBinaryToDecimal(string  n) {
 }
 
 int main() {
+	
+	cout << 1+ atoi ("123")<<endl;
 
 	std::vector<string> ans (31);
 
@@ -100,6 +120,36 @@ int main() {
 	string inst;
 
 /// test input
+
+
+	ifstream file("C:/Users/LuckyCat/Desktop/jom/comarch_prot/test1.txt");
+	string str;
+	while (std::getline(file, str)) {
+		printWords(str);
+
+		string Combile="";
+
+		// R- type
+
+		// I-type
+
+		// J-type
+
+		// o-type
+
+
+	}
+
+	for(int j = 0; j < 10; j++) {
+		for(int i = 0; i < 4; i++) {
+			cout << num[i][j] <<endl;
+		}
+	}
+	for(int j = 0; j < 10; j++) {
+		cout << inst[j] <<endl;
+	}
+	
+	
 	cout << "input your instruction :";
 	cin >> inst;
 	if(inst =="add" || inst =="nand") {
@@ -142,13 +192,13 @@ int main() {
 		if(inst =="nand") {
 			ans.push_back("001"); // opcode =001
 		}
-		ans.push_back(binary(number3)); //rt
-		ans.push_back(binary(number2)); //rs
+		ans.push_back(binary(number3));
+		ans.push_back(binary(number2));
 
 		for(int i =0; i<13 ; i++) {
 			ans.push_back("0");
 		}
-		ans.push_back(binary(number1));  //rd
+		ans.push_back(binary(number1));
 
 	}
 	if(inst =="jalr" ) { // j-type
@@ -284,29 +334,14 @@ int main() {
 		}
 
 	}
-
-
 	string ansz;
 	int int_ans;
 	for(int i =0; i<ans.size() ; i++) { // print out the result!!
 		ansz+= ans.at(i);
 	}
-
-	cout <<ansz;
-	cout <<endl;
 	ans.clear();
-	cout <<endl;
-	int_ans= convertBinaryToDecimal(ansz);
-	cout << ansz.length();
-	cout <<endl;
-	cout << int_ans;
-	cout << endl;
 
-	ifstream file("C:/Users/LuckyCat/Desktop/jom/comarch_prot/test1.txt");
-	string str;
-	while (std::getline(file, str)) {
-		printWords(str);
-	}
+
 
 
 	return 0;

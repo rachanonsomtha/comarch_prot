@@ -1,5 +1,5 @@
-	ld 0 1 5
-	ld 1 2 3
+	lw 0 1 five
+	lw 1 2 3
 start	add 1 2 1
 	beq 0 1 2
 	beq 0 0 start
@@ -8,4 +8,8 @@ done	halt
 five	.fill 5
 neg	.fill -1
 stAddr	.fill start
+
+num[0][i]
+num[1][i]
+num[2][i]
 

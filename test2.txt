@@ -1,0 +1,4 @@
+	ld 0 1 5
+start	add 1 2 1
+	beq 0 0 start
+
